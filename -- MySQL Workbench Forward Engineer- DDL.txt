@@ -1,0 +1,89 @@
+-- MySQL Workbench Forward Engineering
+ 
+-- -----------------------------------------------------
+-- Schema my_training_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema my_training_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `my_training_db` DEFAULT CHARACTER SET utf8 ;
+USE `my_training_db` ;
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`address`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`address` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `address_line` VARCHAR(255) NULL,
+  `city` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`student`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`student` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `email` VARCHAR(45) NULL,
+  `address_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`department`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`department` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`instructor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`instructor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `salary` DOUBLE NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`course`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`course` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `credit` INT NULL,
+  `department_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `department_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`student_has_course`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`student_course` (
+  `student_id` INT NOT NULL,
+  `course_id` INT NOT NULL,
+  `date_of_enrollment` DATE NULL,
+  PRIMARY KEY (`student_id`, `course_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_training_db`.`course_has_instructor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_training_db`.`course_instructor` (
+  `course_id` INT NOT NULL,
+  `instructor_id` INT NOT NULL,
+  `year` VARCHAR(45) NULL,
+  PRIMARY KEY (`course_id`, `instructor_id`))
+ENGINE = InnoDB;
+
